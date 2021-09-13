@@ -1,9 +1,7 @@
-# employee-tracker-cli
-# Readme Generator
+# Employee Tracker CLI
   
-
   ## Description  
- This is a Employee Tracker application with command line where user would be able to view and manage the departments, roles, and employees of their company and organize their bussiness plan accordingly.
+ This is a Employee Tracker application with command line where user would be able to view and manage the departments, roles, and employees of their company and organize their business plan accordingly.
 
   ## Table Of Content  
  
