@@ -22,7 +22,7 @@ function viewAllDepartments() {
 
 function viewAllRoles() {
     return new Promise((resolve, reject) => {
-        let sql = "SELECT * FROM roles"
+        let sql = "SELECT role_id, job_title, departments.department_name, salary from roles, departments where roles.role_id = departments.department_id";
         const params = [];
         let db = dbConnection();
 
@@ -36,7 +36,7 @@ function viewAllRoles() {
 
 function viewAllEmployees() {
     return new Promise((resolve, reject) => {
-        let sql = "Select employee_id, first_name, last_name, employees.role_id, manager_name, roles.salary, roles.job_title, roles.department_id from employees, roles where employees.role_id = roles.role_id;"
+        let sql = "Select employee_id, first_name, last_name, employees.role_id, manager_name, roles.salary, roles.job_title, departments.department_name from employees, roles, departments where employees.role_id = roles.role_id and roles.role_id = departments.department_id;"
         const param = [];
         let db = dbConnection();
 
@@ -106,8 +106,7 @@ function getEmployeeId(managerName) {
 
     })
 }
-
-// change the input to take 3 params, and don't forget to change all the spots where the item.XXXX was used. 
+ 
 function addRole(item) {
     return new Promise((resolve, reject) => {
         getDepartmentId(item.departmentName).then((row) => {

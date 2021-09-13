@@ -36,11 +36,11 @@ function startApplication() {
         } else if(selections.action == 'view all roles') {
             myDbFunctions.viewAllRoles().then((rows) => {
                 console.log("---------------------------------------------------------------------------------------------------");
-                console.log(formatting("ROLE ID") + formatting("JOB TITLE") + formatting("DEPARTMENT ID") + formatting("SALARY"));
+                console.log(formatting("ROLE ID") + formatting("JOB TITLE") + formatting("DEPARTMENT NAME") + formatting("SALARY"));
                 console.log("---------------------------------------------------------------------------------------------------");
 
                 for(var i = 0; i < rows.length; i++) {
-                    console.log(formatting(rows[i].role_id ) + formatting(rows[i].job_title) + formatting(rows[i].department_id) + formatting(rows[i].salary))
+                    console.log(formatting(rows[i].role_id ) + formatting(rows[i].job_title) + formatting(rows[i].department_name) + formatting(rows[i].salary))
                 }
             })
             //employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
@@ -52,7 +52,7 @@ function startApplication() {
 
                 for (var i = 0; i < rows.length; i++) {
                     let row = rows[i];
-                    console.log(formatting(row.employee_id) + formatting(row.first_name)+ formatting(row.last_name) + formatting(row.job_title)+ formatting(row.department_id)+ formatting(row.salary)+ formatting(row.manager_name));
+                    console.log(formatting(row.employee_id) + formatting(row.first_name)+ formatting(row.last_name) + formatting(row.job_title)+ formatting(row.department_name)+ formatting(row.salary)+ formatting(row.manager_name));
                 }
             })
         } else if(selections.action == 'add a department') { 
@@ -183,7 +183,6 @@ function startApplication() {
                 })              
             })
         } else {
-
         }
     });
 }; 

@@ -21,6 +21,9 @@
       and 
   ``` Download mysql for database```
 
+mysql -u root -p
+source db/schema.sql
+source db/seeds.sql
 
   ## Getting Started 
 
@@ -35,7 +38,7 @@
   ![alt text](assets/screenshot1.png)
   
   ## Video Walk-through
-  https://drive.google.com/file/d/1PwlpNCokcJwDPtRbiWDE-y55fRgt7v9_/view?usp=sharing
+  
   
   ## Technologies
 

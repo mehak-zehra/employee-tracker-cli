@@ -1,4 +1,8 @@
--- Department table
+
+DROP DATABASE IF EXISTS MehakLLC;
+CREATE DATABASE MehakLLC;
+
+USE MehakLLC;
 Create table departments (
 department_id Integer auto_increment Primary Key Not null,
 department_name Varchar(30) Not null
