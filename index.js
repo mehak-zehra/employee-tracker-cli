@@ -1,4 +1,6 @@
 const inquirer = require ('inquirer');
+const cTable = require('console.table');
+
 const myDbFunctions = require('./src/dbFunctions')
 
 const startOptions = [ 
@@ -25,35 +27,15 @@ function startApplication() {
 
         if(selections.action == 'view all departments') {
             myDbFunctions.viewAllDepartments().then((rows) => {
-                console.log("------------------------------------------------------");
-                console.log("DEPARTMENT ID \t\t DEPARTMENT NAME");
-                console.log("------------------------------------------------------");
-                        
-                for(var i = 0; i < rows.length; i++) {
-                    console.log("\t "+ rows[i].department_id + " \t \t " + rows[i].department_name)
-                }
+                console.table(rows);
             })
         } else if(selections.action == 'view all roles') {
             myDbFunctions.viewAllRoles().then((rows) => {
-                console.log("---------------------------------------------------------------------------------------------------");
-                console.log(formatting("ROLE ID") + formatting("JOB TITLE") + formatting("DEPARTMENT NAME") + formatting("SALARY"));
-                console.log("---------------------------------------------------------------------------------------------------");
-
-                for(var i = 0; i < rows.length; i++) {
-                    console.log(formatting(rows[i].role_id ) + formatting(rows[i].job_title) + formatting(rows[i].department_name) + formatting(rows[i].salary))
-                }
+                console.table(rows);
             })
-            //employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
         } else if(selections.action == 'view all employees') {
             myDbFunctions.viewAllEmployees().then((rows) => {
-                console.log("----------------------------------------------------------------------------------------------------------------------------------------");
-                console.log(formatting("EMPLOYEE ID")+formatting("FIRST NAME")+ formatting("LAST NAME")+ formatting("JOB TITLE")+formatting("DEPARTMENT")+formatting("SALARY")+formatting("MANAGER"));
-                console.log("----------------------------------------------------------------------------------------------------------------------------------------");
-
-                for (var i = 0; i < rows.length; i++) {
-                    let row = rows[i];
-                    console.log(formatting(row.employee_id) + formatting(row.first_name)+ formatting(row.last_name) + formatting(row.job_title)+ formatting(row.department_name)+ formatting(row.salary)+ formatting(row.manager_name));
-                }
+                console.table(rows);
             })
         } else if(selections.action == 'add a department') { 
             inquirer.prompt({
@@ -73,15 +55,7 @@ function startApplication() {
                     {
                         type: 'input',
                         name: 'jobTitle',
-                        message: "What is the new role you want to add?",
-                        validate: (input) => {
-                            if(input.length > 20) {
-                                console.log(" Too many characters for job title")
-                                return false
-                            } else {
-                                return true
-                            }
-                        }
+                        message: "What is the new role you want to add?"
                     },
                     {
                         type: 'list',
@@ -97,9 +71,7 @@ function startApplication() {
                 ])
                 .then ((answers) => {
                     myDbFunctions.addRole(answers).then((something) => {
-                        console.log(something)
-                    }).catch((e) => {
-                        console.log(e)
+                        console.log("Added new role " + answers.jobTitle)
                     })
                 })
             })
@@ -142,16 +114,13 @@ function startApplication() {
                     ])
                     .then((answers) => {
                         myDbFunctions.addEmployee(answers).then((something) => {
-                            console.log(something);
-                        }) .catch((e)=> {
-                            console.log(e);
+                            console.log("Added new employee");
                         })
                     })
                 })
             })
         } else if(selections.action == 'update an employee role') {
             myDbFunctions.viewAllEmployees().then((myEmployees)=> {
-                let employeesArr = myEmployees;
                 let employeeNameArr = []
                 for (var i = 0; i < myEmployees.length; i++) {
                     employeeNameArr.push(myEmployees[i].first_name)
@@ -176,7 +145,7 @@ function startApplication() {
                             choices: jobTitleArr
                         }).then((input) => {
                             myDbFunctions.updateEmployeeRole(answers.employeeNames, input.newRole).then((results) => {
-                                console.log(results);            
+                                console.log("updated employee role");            
                             })
                         })
                     })
@@ -187,11 +156,4 @@ function startApplication() {
     });
 }; 
 
-function formatting(input) {
-    let maxLength = 20;
-
-    var a = input + Array(maxLength - input.toString().length).fill('\xa0').join('')
-    return a
-}
-
- startApplication();
+startApplication();

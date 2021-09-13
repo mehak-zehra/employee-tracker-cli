@@ -56,7 +56,7 @@ function addDepartment(item) {
 
 
     db.query(sql, params, function (err, results) {
-        console.log(results);
+        console.log("Added new department " + item.departmentName);
     });
     db.end();
 }
@@ -110,14 +110,10 @@ function getEmployeeId(managerName) {
 function addRole(item) {
     return new Promise((resolve, reject) => {
         getDepartmentId(item.departmentName).then((row) => {
-            console.log(row)
             let departmentId = row[0].department_id;
-            console.log(departmentId)
-
             let sql = "INSERT INTO roles(job_title, department_id, salary) VALUES (?,?,?)"
             const params = [item.jobTitle, departmentId, item.salary];
             let db = dbConnection();
-
 
             db.query(sql, params, function (err, results) {
                 if (err) reject(err)
