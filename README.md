@@ -21,13 +21,21 @@
       and 
   ``` Download mysql for database```
 
-mysql -u root -p
-source db/schema.sql
-source db/seeds.sql
+
 
   ## Getting Started 
 
   After you have cloned the git repository, and ran the necessary installs, execute the either of the following command to run the application in the root directory
+
+```mysql -u root -p```
+
+```source db/schema.sql```
+
+```source db/seeds.sql```
+
+Then ```exit```
+
+To run the application
 
   ```node index.js``` 
         OR 
@@ -38,6 +46,7 @@ source db/seeds.sql
   ![alt text](assets/screenshot1.png)
   
   ## Video Walk-through
+  https://www.youtube.com/watch?v=lZIsSJzg9mU
   
   
   ## Technologies
