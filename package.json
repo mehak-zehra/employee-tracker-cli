@@ -1,0 +1,27 @@
+{
+  "name": "employee-tracker-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mehak-zehra/employee-tracker-cli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mehak-zehra/employee-tracker-cli/issues"
+  },
+  "homepage": "https://github.com/mehak-zehra/employee-tracker-cli#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "inquirer": "^8.1.2",
+    "mysql2": "^2.3.0"
+  },
+  "devDependencies": {
+    "jest": "^27.1.0"
+  }
+}
